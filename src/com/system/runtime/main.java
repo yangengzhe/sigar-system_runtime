@@ -25,9 +25,10 @@ public class main {
             System.setProperty("java.library.path", "monitor_libs");
             if(args.length==0) ip = "192.168.191.5";
             else ip = args[0];
+            System.setProperty("java.rmi.server.hostname", ip);
             systemStatusService sss = new systemStatusServiceImpl();
             LocateRegistry.createRegistry(8828);
-            Naming.bind("rmi://127.0.0.1:8828/systemstatus",sss);
+            Naming.bind("rmi://"+ip+":8828/systemstatus",sss);
             System.out.println("启动成功！"+System.getProperty("java.library.path"));
         } catch (Exception e) {
             System.out.println("创建远程对象发生异常！"); 
