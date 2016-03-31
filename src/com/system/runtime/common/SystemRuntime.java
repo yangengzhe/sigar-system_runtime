@@ -68,6 +68,7 @@ public class SystemRuntime {
     
     public float[] net(String ip) throws Exception{
         float[] result = {0f,0f};
+        if(netBytes(ip) == null) return result;
         update();
         long time  = System.currentTimeMillis();
         long rx = netBytes(ip).getRxBytes();
